@@ -1,0 +1,2 @@
+rootProject.name = "koro8"
+

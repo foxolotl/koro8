@@ -1,0 +1,5 @@
+-dontobfuscate
+-dontoptimize
+-keep class com.github.foxolotl.koro8.MainKt { public static *; }
+-keeppackagenames "com.github.foxolotl.koro8"
+-keepdirectories "com/github/foxolotl/koro8"
