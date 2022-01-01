@@ -3,6 +3,7 @@ A [CHIP-8](https://en.wikipedia.org/wiki/CHIP-8) emulator with
 a [Korone](https://twitter.com/KoroneNoises/)-based sound chip.
 
 ## Usage
+0. Make sure you have Java installed, at version 11. If not, get it from [adoptium.net](https://adoptium.net).
 1. Download the JAR from the [latest release](https://github.com/foxolotl/koro8/releases/latest).
 2. Get some [roms](https://github.com/loktar00/chip8/tree/master/roms) to run.
     The default key map is QWER to 123C, ASDF to 456D, ZXCV to 789E, and 1234 to A0BF.
