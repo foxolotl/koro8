@@ -24,6 +24,7 @@ class CPU(
     private val cycleTimeNanos: Long = 1000000000L / cyclesPerSecond
     private val cycleSleepMillis: Long = cycleTimeNanos / 1000000L
     private var cycles: Long = 0
+    private var nextCycleDeadline: Long = 0
 
     private val heap: Heap = Heap(HEAP_SIZE)
     private val stack: Stack = Stack(STACK_SIZE)
@@ -74,7 +75,12 @@ class CPU(
         display.clear()
     }
 
-    tailrec fun run(ticks: Long = Long.MAX_VALUE, nextCycleDeadline: Long = System.nanoTime()) {
+    fun run(ticks: Long = Long.MAX_VALUE) {
+        nextCycleDeadline = System.nanoTime()
+        execute(ticks)
+    }
+
+    private tailrec fun execute(ticks: Long) {
         if (ticks == 0L) {
             return
         }
@@ -84,10 +90,11 @@ class CPU(
         val now = System.nanoTime()
         if (now >= nextCycleDeadline) {
             step()
-            run(ticks - 1, nextCycleDeadline + cycleTimeNanos)
+            nextCycleDeadline += cycleTimeNanos
+            execute(ticks - 1)
         } else {
             Thread.sleep(cycleSleepMillis)
-            run(ticks, nextCycleDeadline)
+            execute(ticks)
         }
     }
     
@@ -152,7 +159,13 @@ class CPU(
         }
     }
 
-    private inline fun ldk(reg: Register) = ld(reg, keyboard.waitKey())
+    private inline fun ldk(reg: Register) {
+        val t0 = System.nanoTime()
+        val key = keyboard.waitKey()
+        val t1 = System.nanoTime()
+        nextCycleDeadline += (t1 - t0)
+        ld(reg, key)
+    }
     private inline fun stdt(reg: Register) = ld(reg, regs.DT)
     private inline fun ld(reg1: Register, reg2: Register) = ld(reg1, regs.V[reg2])
     private inline fun sne(reg1: Register, reg2: Register) = sne(reg1, regs.V[reg2])
