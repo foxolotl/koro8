@@ -38,6 +38,19 @@ class KoroneBuzzer(private val rng: Random = Random.Default) : Buzzer, Closeable
     }
     
     private companion object {
-        private val files = listOf("pyonpyon", "sneeze", "yes", "assassin", "korone", "ehehu", "goddamn")
+        private val files = listOf(
+            "pyonpyon",
+            "sneeze",
+            "sneeze2",
+            "yes",
+            "assassin",
+            "ehehu",
+            "goddamn",
+            "orayo1",
+            "orayo2",
+            "orayo3",
+            "yubi",
+            "yubiyubi"
+        )
     }
 }
