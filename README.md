@@ -14,3 +14,8 @@ a [Korone](https://twitter.com/KoroneNoises/)-based sound chip.
     Using the default key map, the A and D keys control the paddle.
 3. Run koro8 with the path to one of your downloaded roms as argument: `java -jar koro8-0.1.2-min.jar /path/to/some/rom.ch8`.
     You can also fine-tune various parts of koro8's appearance and behaviour.
+
+
+See (and, more importantly, listen to) koro8 in action:
+
+https://user-images.githubusercontent.com/96795329/147975418-6754fd83-af18-410a-ba8c-135dcf1e411f.mp4
